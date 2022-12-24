@@ -1,0 +1,27 @@
+
+
+<div class="container">
+  <p>Welcome {{name}}!</p> <br>
+  You can manage your to do list <a routerLink="/todos"> here</a>
+</div>
+
+
+<div class="container">
+  Click here to get a customise hello message
+  <br>
+  <button class = "btn btn-success"  (click) = "getWelcomeMessage()">
+    Get Welcome Message
+  </button>
+
+  <br>
+  <br>
+  <br>
+  <button (click)="onClick()">+</button>
+  Clicks : {{counter}}
+
+  <br>
+
+  Titlul : <input type="text" name="title" [(ngModel)]="title">
+  <button (click)=onShow()> Afisare</button>
+  {{titleShown}}
+</div>
