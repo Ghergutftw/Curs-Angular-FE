@@ -9,9 +9,14 @@
 <div class="container">
   Click here to get a customise hello message
   <br>
-  <button class = "btn btn-success"  (click) = "getWelcomeMessage()">
+  <button class = "btn btn-success"  (click) = "getWelcomeMessageWithName()">
     Get Welcome Message
   </button>
+
+  <div class="container" *ngIf="welcomeMessageFromService">
+    <h1>Your customised welcome message : </h1>
+    {{welcomeMessageFromService}}
+  </div>
 
   <br>
   <br>

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import {TodoDataService} from "../service/data/todo-data.service";
+import {resolve} from "@angular/compiler-cli";
 
 export class Todo {
   constructor(
     public id: number,
     public description: string,
     public done: boolean,
-    public target: Date
+    public targetDate: Date
   ) {
   }
 }
@@ -16,14 +18,28 @@ export class Todo {
 })
 export class ListTodosComponent  {
 
-  todos= [
-    new Todo(1,'Learn to Dance',false, new Date()),
-    new Todo(2,'Learn to Cook',false, new Date()),
-    new Todo(3,'Learn to Karate',false, new Date()),
-    new Todo(4,'Study',false, new Date()),
+  todos : Todo[] | any;
 
-  ]
-  constructor() { }
+  // todos= [
+  //   new Todo(1,'Learn to Dance',false, new Date()),
+  //   new Todo(2,'Learn to Cook',false, new Date()),
+  //   new Todo(3,'Learn to Karate',false, new Date()),
+  //   new Todo(4,'Study',false, new Date()),
+  //
+  // ]
+  constructor(
+    private service: TodoDataService
+  ) {
 
+  }
+
+  ngOnInit(){
+    this.service.retrieveAllTodos('Madalin').subscribe(
+      response =>{
+        console.log(response);
+        this.todos = response;
+      }
+    )
+  }
 
 }

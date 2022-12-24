@@ -12,7 +12,7 @@
     <tbody class="table-tabs">
     <tr *ngFor="let todo of todos">
       <td>{{todo.description | uppercase}}</td>
-      <td>{{todo.target | date | uppercase}}</td>
+      <td>{{todo.targetDate | date}}</td>
       <td>{{todo.done}} </td>
     </tr>
     </tbody>
