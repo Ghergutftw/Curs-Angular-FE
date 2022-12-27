@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ShowNameComponent } from './show-name/show-name.component';
 import { LogoutComponent } from './logout/logout.component';
 import {HttpClientModule} from "@angular/common/http";
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     MenuComponent,
     FooterComponent,
     ShowNameComponent,
-    LogoutComponent
+    LogoutComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

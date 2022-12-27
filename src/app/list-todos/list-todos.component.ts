@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {TodoDataService} from "../service/data/todo-data.service";
-import {resolve} from "@angular/compiler-cli";
+import {Router} from "@angular/router";
 
 export class Todo {
   constructor(
@@ -20,20 +20,20 @@ export class ListTodosComponent  {
 
   todos : Todo[] | any;
 
-  // todos= [
-  //   new Todo(1,'Learn to Dance',false, new Date()),
-  //   new Todo(2,'Learn to Cook',false, new Date()),
-  //   new Todo(3,'Learn to Karate',false, new Date()),
-  //   new Todo(4,'Study',false, new Date()),
-  //
-  // ]
+  deleteMessage : string | unknown;
+
   constructor(
-    private service: TodoDataService
+    private service: TodoDataService,
+    private router: Router
   ) {
 
   }
 
   ngOnInit(){
+    this.refreshPage()
+  }
+
+  refreshPage(){
     this.service.retrieveAllTodos('Madalin').subscribe(
       response =>{
         console.log(response);
@@ -42,4 +42,31 @@ export class ListTodosComponent  {
     )
   }
 
+  deleteTodo(id: number) {
+    console.log(`Deleted Todo ${id}`)
+    this.service.deleteTodo("Madalin" , id).subscribe(
+      response =>{
+        console.log("Deleted Succesfully")
+        this.deleteMessage=`DELETED THE ${id} TODO SUCCEFULLY `
+        // @ts-ignore
+        // window.location.reload(false)
+        this.refreshPage()
+      },
+      error => {
+        console.log("Error Has been made")
+        this.deleteMessage="AN ERROR has been made"
+      }
+    )
+  }
+
+  updateTodo(id : number) {
+    console.log(`Updated the todo : ${id} `)
+    this.router.navigate(['todos',id])
+    //in functia navigaete "," joaca rol de /
+  }
+
+  createTodo() {
+    console.log("CREATING TODO")
+    this.router.navigate(['todos',-1])
+  }
 }
